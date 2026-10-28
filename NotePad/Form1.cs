@@ -1,3 +1,4 @@
+
 namespace NotePad
 {
     public partial class Form1 : Form
@@ -6,84 +7,96 @@ namespace NotePad
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void richxtbox_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void шрифтToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (fontDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox1.Font = fontDialog1.Font;
+                richxtbox.SelectionFont = fontDialog1.Font;
             }
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.Filter = "Форматированный текст (*.rtf)|*.rtf";
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                System.IO.File.WriteAllText(saveFileDialog1.FileName, textBox1.Text);
+                richxtbox.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.RichText);
             }
         }
-
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "Форматированный текст (*.rtf)|*.rtf";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox1.Text = System.IO.File.ReadAllText(openFileDialog1.FileName);
+                richxtbox.LoadFile(openFileDialog1.FileName, RichTextBoxStreamType.RichText);
             }
         }
-
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+            richxtbox.Clear();
         }
-
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void отменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (textBox1.CanUndo) textBox1.Undo();
+            if (richxtbox.CanUndo) richxtbox.Undo();
         }
-
         private void вырезатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Cut();
+            richxtbox.Cut();
         }
-
         private void копироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Copy();
+            richxtbox.Copy();
         }
-
         private void вставитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Paste();
+            richxtbox.Paste();
         }
-
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.SelectedText = "";
+            richxtbox.SelectedText = "";
         }
-
         private void правкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
         private void переносПоСловамToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.WordWrap = !textBox1.WordWrap;
+            richxtbox.WordWrap = !richxtbox.WordWrap;
+        }
+        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog1.ShowDialog();
+        }
+        private void выделитьВсеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richxtbox.SelectAll();
+        }
+        private void цветToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                colorDialog.Color = richxtbox.SelectionColor;
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    richxtbox.SelectionColor = colorDialog.Color;
+                }
+            }
         }
     }
 }

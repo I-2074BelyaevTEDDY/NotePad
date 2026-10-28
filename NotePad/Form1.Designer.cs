@@ -58,6 +58,7 @@
             форматToolStripMenuItem = new ToolStripMenuItem();
             переносПоСловамToolStripMenuItem = new ToolStripMenuItem();
             шрифтToolStripMenuItem = new ToolStripMenuItem();
+            цветToolStripMenuItem = new ToolStripMenuItem();
             видToolStripMenuItem = new ToolStripMenuItem();
             масштабToolStripMenuItem = new ToolStripMenuItem();
             увеличитьToolStripMenuItem = new ToolStripMenuItem();
@@ -68,7 +69,7 @@
             посмотретьСправкуToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem6 = new ToolStripSeparator();
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
-            textBox1 = new TextBox();
+            richxtbox = new RichTextBox();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             fontDialog1 = new FontDialog();
@@ -79,6 +80,7 @@
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel4 = new ToolStripStatusLabel();
             toolStripStatusLabel3 = new ToolStripStatusLabel();
+            printDialog1 = new PrintDialog();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -98,10 +100,12 @@
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(48, 20);
             файлToolStripMenuItem.Text = "Файл";
+            файлToolStripMenuItem.Click += файлToolStripMenuItem_Click;
             // 
             // создатьToolStripMenuItem
             // 
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
+            создатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
             создатьToolStripMenuItem.Size = new Size(195, 22);
             создатьToolStripMenuItem.Text = "Создать";
             создатьToolStripMenuItem.Click += создатьToolStripMenuItem_Click;
@@ -109,6 +113,7 @@
             // открытьToolStripMenuItem
             // 
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            открытьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
             открытьToolStripMenuItem.Size = new Size(195, 22);
             открытьToolStripMenuItem.Text = "Открыть";
             открытьToolStripMenuItem.Click += открытьToolStripMenuItem_Click;
@@ -116,6 +121,7 @@
             // сохранитьToolStripMenuItem
             // 
             сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            сохранитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
             сохранитьToolStripMenuItem.Size = new Size(195, 22);
             сохранитьToolStripMenuItem.Text = "Сохранить";
             сохранитьToolStripMenuItem.Click += сохранитьToolStripMenuItem_Click;
@@ -140,8 +146,10 @@
             // печатьToolStripMenuItem
             // 
             печатьToolStripMenuItem.Name = "печатьToolStripMenuItem";
+            печатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
             печатьToolStripMenuItem.Size = new Size(195, 22);
             печатьToolStripMenuItem.Text = "Печать";
+            печатьToolStripMenuItem.Click += печатьToolStripMenuItem_Click;
             // 
             // toolStripMenuItem2
             // 
@@ -166,98 +174,111 @@
             // отменитьToolStripMenuItem
             // 
             отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
-            отменитьToolStripMenuItem.Size = new Size(205, 22);
+            отменитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Z;
+            отменитьToolStripMenuItem.Size = new Size(245, 22);
             отменитьToolStripMenuItem.Text = "Отменить ";
             отменитьToolStripMenuItem.Click += отменитьToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(202, 6);
+            toolStripMenuItem3.Size = new Size(242, 6);
             // 
             // вырезатьToolStripMenuItem
             // 
             вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-            вырезатьToolStripMenuItem.Size = new Size(205, 22);
+            вырезатьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.X;
+            вырезатьToolStripMenuItem.Size = new Size(245, 22);
             вырезатьToolStripMenuItem.Text = "Вырезать";
             вырезатьToolStripMenuItem.Click += вырезатьToolStripMenuItem_Click;
             // 
             // копироватьToolStripMenuItem
             // 
             копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            копироватьToolStripMenuItem.Size = new Size(205, 22);
+            копироватьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C;
+            копироватьToolStripMenuItem.Size = new Size(245, 22);
             копироватьToolStripMenuItem.Text = "Копировать";
             копироватьToolStripMenuItem.Click += копироватьToolStripMenuItem_Click;
             // 
             // вставитьToolStripMenuItem
             // 
             вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            вставитьToolStripMenuItem.Size = new Size(205, 22);
+            вставитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
+            вставитьToolStripMenuItem.Size = new Size(245, 22);
             вставитьToolStripMenuItem.Text = "Вставить";
             вставитьToolStripMenuItem.Click += вставитьToolStripMenuItem_Click;
             // 
             // удалитьToolStripMenuItem
             // 
             удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            удалитьToolStripMenuItem.Size = new Size(205, 22);
+            удалитьToolStripMenuItem.ShortcutKeys = Keys.Delete;
+            удалитьToolStripMenuItem.Size = new Size(245, 22);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += удалитьToolStripMenuItem_Click;
             // 
             // toolStripMenuItem4
             // 
             toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(202, 6);
+            toolStripMenuItem4.Size = new Size(242, 6);
             // 
             // поискСПомощьюBingToolStripMenuItem
             // 
             поискСПомощьюBingToolStripMenuItem.Name = "поискСПомощьюBingToolStripMenuItem";
-            поискСПомощьюBingToolStripMenuItem.Size = new Size(205, 22);
+            поискСПомощьюBingToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.E;
+            поискСПомощьюBingToolStripMenuItem.Size = new Size(245, 22);
             поискСПомощьюBingToolStripMenuItem.Text = "Поиск с помощью Bing";
             // 
             // найтиToolStripMenuItem
             // 
             найтиToolStripMenuItem.Name = "найтиToolStripMenuItem";
-            найтиToolStripMenuItem.Size = new Size(205, 22);
+            найтиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
+            найтиToolStripMenuItem.Size = new Size(245, 22);
             найтиToolStripMenuItem.Text = "Найти";
             // 
             // найтиДалееToolStripMenuItem
             // 
             найтиДалееToolStripMenuItem.Name = "найтиДалееToolStripMenuItem";
-            найтиДалееToolStripMenuItem.Size = new Size(205, 22);
+            найтиДалееToolStripMenuItem.ShortcutKeys = Keys.F3;
+            найтиДалееToolStripMenuItem.Size = new Size(245, 22);
             найтиДалееToolStripMenuItem.Text = "Найти далее";
             // 
             // заменитьToolStripMenuItem
             // 
             заменитьToolStripMenuItem.Name = "заменитьToolStripMenuItem";
-            заменитьToolStripMenuItem.Size = new Size(205, 22);
+            заменитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
+            заменитьToolStripMenuItem.Size = new Size(245, 22);
             заменитьToolStripMenuItem.Text = "Заменить";
             // 
             // перейтиToolStripMenuItem
             // 
             перейтиToolStripMenuItem.Name = "перейтиToolStripMenuItem";
-            перейтиToolStripMenuItem.Size = new Size(205, 22);
+            перейтиToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.G;
+            перейтиToolStripMenuItem.Size = new Size(245, 22);
             перейтиToolStripMenuItem.Text = "Перейти";
             // 
             // toolStripMenuItem5
             // 
             toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(202, 6);
+            toolStripMenuItem5.Size = new Size(242, 6);
             // 
             // выделитьВсеToolStripMenuItem
             // 
             выделитьВсеToolStripMenuItem.Name = "выделитьВсеToolStripMenuItem";
-            выделитьВсеToolStripMenuItem.Size = new Size(205, 22);
+            выделитьВсеToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.A;
+            выделитьВсеToolStripMenuItem.Size = new Size(245, 22);
             выделитьВсеToolStripMenuItem.Text = "Выделить все";
+            выделитьВсеToolStripMenuItem.Click += выделитьВсеToolStripMenuItem_Click;
             // 
             // времяИДатаToolStripMenuItem
             // 
             времяИДатаToolStripMenuItem.Name = "времяИДатаToolStripMenuItem";
-            времяИДатаToolStripMenuItem.Size = new Size(205, 22);
+            времяИДатаToolStripMenuItem.ShortcutKeys = Keys.F5;
+            времяИДатаToolStripMenuItem.Size = new Size(245, 22);
             времяИДатаToolStripMenuItem.Text = "Время и дата";
             // 
             // форматToolStripMenuItem
             // 
-            форматToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { переносПоСловамToolStripMenuItem, шрифтToolStripMenuItem });
+            форматToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { переносПоСловамToolStripMenuItem, шрифтToolStripMenuItem, цветToolStripMenuItem });
             форматToolStripMenuItem.Name = "форматToolStripMenuItem";
             форматToolStripMenuItem.Size = new Size(62, 20);
             форматToolStripMenuItem.Text = "Формат";
@@ -276,6 +297,13 @@
             шрифтToolStripMenuItem.Text = "Шрифт";
             шрифтToolStripMenuItem.Click += шрифтToolStripMenuItem_Click;
             // 
+            // цветToolStripMenuItem
+            // 
+            цветToolStripMenuItem.Name = "цветToolStripMenuItem";
+            цветToolStripMenuItem.Size = new Size(183, 22);
+            цветToolStripMenuItem.Text = "Цвет";
+            цветToolStripMenuItem.Click += цветToolStripMenuItem_Click;
+            // 
             // видToolStripMenuItem
             // 
             видToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { масштабToolStripMenuItem, строкаСостоянияToolStripMenuItem });
@@ -293,12 +321,14 @@
             // увеличитьToolStripMenuItem
             // 
             увеличитьToolStripMenuItem.Name = "увеличитьToolStripMenuItem";
+            увеличитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Oemplus;
             увеличитьToolStripMenuItem.Size = new Size(288, 22);
             увеличитьToolStripMenuItem.Text = "Увеличить";
             // 
             // уменьшитьToolStripMenuItem
             // 
             уменьшитьToolStripMenuItem.Name = "уменьшитьToolStripMenuItem";
+            уменьшитьToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.OemMinus;
             уменьшитьToolStripMenuItem.Size = new Size(288, 22);
             уменьшитьToolStripMenuItem.Text = "Уменьшить";
             // 
@@ -338,16 +368,16 @@
             оПрограммеToolStripMenuItem.Size = new Size(191, 22);
             оПрограммеToolStripMenuItem.Text = "О программе";
             // 
-            // textBox1
+            // richxtbox
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(0, 24);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ScrollBars = ScrollBars.Both;
-            textBox1.Size = new Size(784, 537);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            richxtbox.Dock = DockStyle.Fill;
+            richxtbox.Location = new Point(0, 24);
+            richxtbox.Multiline = true;
+            richxtbox.Name = "richxtbox";
+            richxtbox.ScrollBars = RichTextBoxScrollBars.Both;
+            richxtbox.Size = new Size(784, 537);
+            richxtbox.TabIndex = 1;
+            richxtbox.TextChanged += richxtbox_TextChanged;
             // 
             // openFileDialog1
             // 
@@ -397,13 +427,17 @@
             toolStripStatusLabel3.Size = new Size(142, 17);
             toolStripStatusLabel3.Text = "                Windows (CRLF)";
             // 
+            // printDialog1
+            // 
+            printDialog1.UseEXDialog = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
             Controls.Add(statusStrip1);
-            Controls.Add(textBox1);
+            Controls.Add(richxtbox);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
@@ -453,7 +487,7 @@
         private ToolStripMenuItem справкаToolStripMenuItem;
         private ToolStripMenuItem посмотретьСправкуToolStripMenuItem;
         private ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private TextBox textBox1;
+        private RichTextBox richxtbox;
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripSeparator toolStripMenuItem3;
@@ -470,5 +504,7 @@
         private ToolStripStatusLabel toolStripStatusLabel3;
         private ToolStripStatusLabel toolStripStatusLabel5;
         private ToolStripStatusLabel toolStripStatusLabel4;
+        private ToolStripMenuItem цветToolStripMenuItem;
+        private PrintDialog printDialog1;
     }
 }
